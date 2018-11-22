@@ -1,13 +1,15 @@
 EXECUTAR ANTES DA APLICAÇÃO CLIENTE
 
-Aplicação simples de CRUD de usuários utilizando técnicas que podem ser utilizadas com CI/CD
+Aplicação simples de CRUD de produtos, onde a criação dos itens apenas e feita a partir uploa
+de uma planilha, que conta com uma fila de processamento , e uma rota onde e possivel verificar o estado de cada upload e seu historico
+utilizando técnicas que podem ser utilizadas com CI/CD
 para gerencimento de ambientes com o uso de:
 
     - DOCKER  com docker compose
     - NGINX
     - PHP
     - MYSQL
-    - REDIS
+    - REDIS ( para queue driver)
     - SQLITE ( para Suite de testes / in memory )
     - LARAVEL FRAMEWORK
 
@@ -18,7 +20,7 @@ para gerencimento de ambientes com o uso de:
     - web / nginx
 
 1- Baixar repositório 
-    - git clone https://github.com/brunocaramelo/employee-test-case.git
+    - git clone https://gitlab.com/bcaramelo/queue-test-plan.git
 
 2 - VERIFICAR  SE AS PORTAS 4001 E 3306 ESTÃO OCUPADAS,
 
@@ -49,19 +51,24 @@ O mesmo pode ser rodado em uma unica vez com o comando:
 
 APOS RODAR A aplicação estara disponivel em 
 
-http://localhost:4001/api/v1/employees/
+http://localhost:4001/api/
+
+ Rotas:
+ 
+ GET - v1/products/ (Listar Produtos)
+ 
+ GET - v1/products/{id} (Detalhar Produtos
+ 
+PUT - v1/products/{id} (Editar Produtos
+
+POST - v1/upload/ (Importar Produtos, Enviar planilha no campo [file]  IMPORTANTE: o campo deve ser do tipo file , no PostMan no Header tirar opção Content-Type)
+
+DELETE - v1/products/{id} (Excluir Produtos)
+
+GET - v1/upload/check-proccess (Listar Processos)
 
 
-Rotas: 
-GET - api/v1/reports/employees/ (Listar Relatorio de Funcionarios) 
+Exemplo de Planilha de upload em example/example.xlsx
 
-GET - api/v1/employees/ (Listar Funcionarios) 
-
-GET - api/v1/employee/{id} (Detalhar Funcionario) 
-
-PUT - api/v1/employee/{id} (Editar Funcionario) 
-
-POST - api/v1/employee/ (Criar Funcionario ) 
-
-DELETE - api/v1/employee/{id} (Excluir Funcionario)
+GET - v1/products/check-proccess/{id} (Detalhar Processo)
 

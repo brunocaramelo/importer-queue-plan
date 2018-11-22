@@ -32,8 +32,9 @@ class ImportPlanJobTest extends TestCase
                                     ); 
             
         Queue::fake();
-        
-        Queue::pushed( JobImportPlanProducts::class , function ( $job ) use ( $importPlan ) {
+        JobImportPlanProducts::dispatch( $importPlan );
+
+        Queue::assertPushed( JobImportPlanProducts::class , function ( $job ) use ( $importPlan ) {
             return  $job;
         });
         

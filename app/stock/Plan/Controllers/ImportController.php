@@ -16,7 +16,7 @@ class ImportController extends Controller
     
     public function importProduct( Request $request )
     {
-        $return = ['status' => '200','message'=> null,'data'=> null];
+       $return = ['status' => '200','message'=> null,'data'=> null];
         $file = $request->file('file');
         $file->move( base_path('storage/uploads' ),
                      $file->getClientOriginalName() );
